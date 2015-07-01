@@ -7,13 +7,21 @@ clear all; close all; clc;
 
 clc; clear; close all
 
+%% example on 1 patient
+
+% load data
 [sig, ann, tim, header, ecg] = readECGSamplePhysionet('100', '../mitdb');
 
-% preprocess
-plotECG(tim, sig, ann)
+% whole ECG
+plotECG(ecg)
 title('orig ECG')
 
-% downsample Nx
+% subsample of interesting part
 figure
-sub = subsampleECG(ecg, [1, 1000]);
-plotECG(sub.times, sub.signal, sub.annot)
+sub = subsampleECG(ecg, [200000, 350000]); % interesting region - first normal, later lot anomalies
+plotECG(sub)
+
+% zoom
+figure
+zoom = subsampleECG(ecg, [3.02*10^5, 3.08*10^5]);
+plotECG(zoom)

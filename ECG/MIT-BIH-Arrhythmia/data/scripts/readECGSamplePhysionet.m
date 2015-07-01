@@ -7,6 +7,7 @@ function [signal, annotation, time, header, ecg] = readECGSamplePhysionet(fileNa
 % returns:
 %  signal = the ECG signal, 360Hz sampling, 10mV 
 %TODO what is signal 2?
+%  steps = which steps is this signal from? (eg 1:650k)
 %  annotation = annotation data ('N' = normal, other are types of
 %    anomalies) of each beat
 %  time = timing data (maps annotations to signal)
@@ -39,6 +40,7 @@ header = headerData;
 
 ecg = {};
 ecg.signal = signal;
+ecg.steps = 1:1:size(signal,1);
 ecg.annot = annotation;
 ecg.times = time;
 ecg.header = header;
