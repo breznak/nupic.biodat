@@ -1,0 +1,22 @@
+
+MIT-BIH Arrhythmia Database Directory
+
+Hypertext edition, 24 May 1997
+(Based on the printed third edition, 23 July 1992)
+
+
+
+Harvard-MIT Division of Health Sciences and Technology
+Biomedical Engineering Center
+
+Copyright © 1980, 1988, 1992, 1997 Massachusetts Institute of Technology.
+
+The database described in this directory can be downloaded without charge from http://physionet.org/physiobank/database/mitdb/ (located at MIT, in Cambridge, MA, USA) and from PhysioNet mirrors worldwide.
+
+You may print your own copy of this directory, with illustrations. See the makefile for UNIX or the batch file for MS-DOS for further information.
+
+Permission is granted to make and distribute verbatim copies of this guide provided that the copyright notice and this permission notice are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this guide under the conditions for verbatim copying, provided also that the entire resulting derived work is distributed under the terms of a permission notice identical to this one.
+
+Permission is granted to copy and distribute translations of this guide into another language, under the above conditions for modified versions. 
