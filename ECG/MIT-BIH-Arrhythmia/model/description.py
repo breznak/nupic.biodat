@@ -3,7 +3,7 @@ ECG_MAX = 1311
 NCOLS = 2048
 HZ=360
 DATA_FILE=u'file:///home/mmm/devel/ecg/nupic.biodat/ECG/MIT-BIH-Arrhythmia/data/out.csv'
-ITERATIONS=50000 # or -1 for whole dataset
+ITERATIONS=-1 # or -1 for whole dataset
 
 # ----------------------------------------------------------------------
 # Numenta Platform for Intelligent Computing (NuPIC)
