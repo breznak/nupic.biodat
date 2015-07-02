@@ -64,9 +64,6 @@ config = {
 
     # Model parameter dictionary.
     'modelParams': {
-        # ID of the model
-        'name': "ECGAnomaly",
-
         # The type of inference that this model will perform
         'inferenceType': 'TemporalAnomaly',
 
@@ -337,11 +334,6 @@ for steps in config['predictionSteps']:
       MetricSpec(field=config['predictedField'], metric='trivial',
                  inferenceElement='prediction',
                  params={'errorMetric': 'altMAPE', 'window': 1000, 'steps': steps}))
-  control['metrics'].append(
-      MetricSpec(field=config['predictedField'], metric='anomaly',
-                 inferenceElement='prediction',
-                 params={'errorMetric': 'altMAPE', 'window': 100, 'steps': steps,
-                         'desiredPct': 0.1, 'modelName': config['modelParams']['name']}))
 
 ################################################################################
 ################################################################################
