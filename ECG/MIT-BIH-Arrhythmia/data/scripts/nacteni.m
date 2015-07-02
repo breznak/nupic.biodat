@@ -32,6 +32,15 @@ plotECG(zoom)
 % save data in NuPIC OPF format
 saveECG2csv('../out.csv', sub)
 
+% process in NuPIC
+% TODO
+
+% load results back
+%TODO
+
+% interpret results
+
+
 %% whole dataset
 clc; clear; close all
 
