@@ -12,7 +12,7 @@ clc; clear; close all
 % load data
 [sig, ann, tim, header, ecg] = readECGSamplePhysionet('100', '../mitdb');
 
-% whole ECG
+% plot whole ECG
 plotECG(ecg)
 title('orig ECG')
 
@@ -25,3 +25,6 @@ plotECG(sub)
 figure
 zoom = subsampleECG(ecg, [3.02*10^5, 3.08*10^5]);
 plotECG(zoom)
+
+% save data in NuPIC OPF format
+saveECG2csv('../out.csv',zoom)
