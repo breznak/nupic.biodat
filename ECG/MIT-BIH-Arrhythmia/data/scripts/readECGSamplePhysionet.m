@@ -38,9 +38,13 @@ annotation = ANN.anntyp;
 time = ANN.time;
 header = headerData;
 
+len = size(signal,1);
 ecg = {};
 ecg.signal = signal;
-ecg.steps = 1:1:size(signal,1);
-ecg.annot = annotation;
+ecg.steps = 1:1:len;
+ecg.annot = char(ones(1,len)*'N'); % default all 'N's (normal)
+ecg.annot(time) = annotation; % assign annotated labels to given times
 ecg.times = time;
+ecg.ANN_=ANN; % orig annotation data (all)
+ecg.ECG_raw_ = EKG_raw(:,:); % orig all ECG data 
 ecg.header = header;

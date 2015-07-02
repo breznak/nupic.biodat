@@ -16,14 +16,17 @@ function ecgCut = subsampleECG(ecgStruct, range)
   annot = ecgStruct.annot;
   
   % crop
-  signal=signal(r0:r1);
-  mask = (time>=r0 & time <= r1);
-  annot=annot(mask);
-  annotT=time(mask);
+  signalC=signal(r0:r1); %cropped signal
+  len = size(signalC, 1);
+  maskT = (time>=r0 & time <= r1);
+  timeC = time(maskT); % cropped time
+  annotC=char(ones(1, len)*'N')
+  annotS = annot(timeC); % cropped annot (sparse)
+  annotC(timeC)=annotS;
  
-  ecgCut={};
-  ecgCut.signal = signal;
+  ecgCut=ecgStruct;
+  ecgCut.signal = signalC;
   ecgCut.steps = r0:1:r1; % used for sub-samples
-  ecgCut.times = annotT;
-  ecgCut.annot = annot;
+  ecgCut.times = timeC;
+  ecgCut.annot = annotC;
   ecgCut.header = ecgStruct.header;

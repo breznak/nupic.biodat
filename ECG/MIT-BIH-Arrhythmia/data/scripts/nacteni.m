@@ -11,10 +11,16 @@ clc; clear; close all
 
 % load data
 [sig, ann, tim, header, ecg] = readECGSamplePhysionet('100', '../mitdb');
+ecg 
 
 % whole ECG
-plotECG(ecg)
-title('orig ECG')
+%plotECG(ecg)
+%title('orig ECG')
+
+% demo
+demo = subsampleECG(ecg, [10000, 15000])
+plotECG(demo)
+return
 
 % subsample of interesting part
 figure
@@ -25,3 +31,5 @@ plotECG(sub)
 figure
 zoom = subsampleECG(ecg, [3.02*10^5, 3.08*10^5]);
 plotECG(zoom)
+
+
