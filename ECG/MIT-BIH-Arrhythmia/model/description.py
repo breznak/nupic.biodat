@@ -96,7 +96,7 @@ config = {
             # SP diagnostic output verbosity control;
             # 0: silent; >=1: some info; >=2: more info;
             'spVerbosity' : 0,
-            'spatialImpl': 'cpp',
+            'spatialImp': 'cpp',
 
             'globalInhibition': 1,
 
@@ -110,7 +110,7 @@ config = {
             # SP inhibition control (absolute value);
             # Maximum number of active columns in the SP region's output (when
             # there are more, the weaker ones are suppressed)
-            'numActivePerInhArea': 40,
+            'numActiveColumnsPerInhArea': 40,
 
             'seed': 1956,
 
@@ -118,7 +118,7 @@ config = {
             # What percent of the columns's receptive field is available
             # for potential synapses. At initialization time, we will
             # choose coincInputPoolPct * (2*coincInputRadius+1)^2
-            'coincInputPoolPct': 0.5,
+            'potentialPct': 0.5,
 
             # The default connected threshold. Any synapse whose
             # permanence value is above the connected threshold is
