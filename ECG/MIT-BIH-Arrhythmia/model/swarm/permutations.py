@@ -41,20 +41,26 @@ permutations = {
   
     'sensorParams': {
       'encoders': {
+#        'timestamp_dayOfWeek': PermuteEncoder(fieldName='timestamp', encoderClass='DateEncoder.dayOfWeek', radius=PermuteFloat(1.000000, 6.000000), w=21),
 #        'timestamp_timeOfDay': PermuteEncoder(fieldName='timestamp', encoderClass='DateEncoder.timeOfDay', radius=PermuteFloat(0.500000, 12.000000), w=21),
+#        'consumption': PermuteEncoder(fieldName='consumption', encoderClass='AdaptiveScalarEncoder', n=PermuteInt(28, 521), w=21, clipInput=True),
+#        'timestamp_weekend': PermuteEncoder(fieldName='timestamp', encoderClass='DateEncoder.weekend', radius=PermuteChoices([1]), w=21),
       },
     },
   
   
     'tpParams': {
-      'pamLength': PermuteInt(1, 10),
+      'minThreshold': PermuteInt(9, 12),
+      'activationThreshold': PermuteInt(12, 16),
+      'pamLength': PermuteInt(1, 5),
     },
- 
-   'anomalyParams': {
-      'mode': PermuteChoices(['pure', 'likelihood', 'weighted']),
-      'slidingWindowSize': PermuteInt(0, 100),
-      'binaryAnomalyThreshold': PermuteChoices([None, 0.5, 0.1, 0.9]),
-    } 
+
+    'anomalyParams': {
+      'mode': PermuteChoices(["pure", "likelihood", "weighted"]),
+      'slidingWindowSize': PermuteInt(0, 20),
+      'binaryAnomalyThreshold': PermuteFloat(0.0, 0.9),
+    },
+  
   
     }
 }
@@ -73,8 +79,8 @@ report = [
 # NOTE: The value is used as a regular expressions by RunPermutations.py's
 #       report generator
 # (generated from minimize = 'prediction:aae:window=1000:field=consumption')
-minimize = "multiStepBestPredictions:anomaly:desiredPct=0.1:errorMetric='altMAPE':modelName='hotgymAnomalySwarmingDemo':steps=1:window=1000:field=consumption"
-
+#minimize = "multiStepBestPredictions:multiStep:errorMetric='aae':steps=1:window=1000:field=consumption"
+minimize = "prediction:anomaly:desiredPct=0.1:errorMetric='altMAPE':modelName='hotgymAnomalySwarmingDemo':steps=1:window=100:field=consumption"
 
 
 #############################################################################
