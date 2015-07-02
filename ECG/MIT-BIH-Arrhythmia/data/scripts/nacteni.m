@@ -31,3 +31,36 @@ plotECG(zoom)
 
 % save data in NuPIC OPF format
 saveECG2csv('../out.csv', sub)
+
+%% whole dataset
+clc; clear; close all
+
+% read all data
+allNames = [100:124 200:234];
+% remove missing names. Why they name it like this? :P
+missing=[110 120 204 206 211 216 218 224:227 229]';
+for idx = 1:numel(missing)
+  allNames(allNames==missing(idx))=[];
+end
+
+figure
+hold all
+sigAll=[];
+for n = 1:numel(allNames)
+    name = num2str(allNames(n));
+    [~, ~, ~,~, ecg]=readECGSamplePhysionet(name, '../mitdb');
+%    plotECG(ecg)
+    plot(ecg.signal)
+    sigAll = [sigAll; ecg.signal];
+end
+title('All samples overlaped')
+
+figure
+plot(sigAll)
+title('All samples in sequence')
+
+%some stats
+aMin = min(sigAll)
+aMax = max(sigAll)
+aMean = mean(sigAll)
+
