@@ -3,7 +3,7 @@ ECG_MAX = 1311
 NCOLS = 2048
 HZ=360
 DATA_FILE=u'file://./inputdata.csv'
-ITERATIONS=10000 # or -1 for whole dataset #override for swarming
+ITERATIONS=3000 # or -1 for whole dataset #override for swarming
 
 # ----------------------------------------------------------------------
 # Numenta Platform for Intelligent Computing (NuPIC)
@@ -280,6 +280,8 @@ applyValueGettersToContainer(config)
 control = {
   # The environment that the current model is being run in
   "environment": 'nupic',
+#FIXME  'swarmSize': 'medium',
+
 
   # Input stream specification per py/nupic/cluster/database/StreamDef.json.
   #
@@ -289,6 +291,9 @@ control = {
                             u'info': u'ECG file',
                             u'source': DATA_FILE}],
         u'version': 1},
+
+
+  ### SWARMING settings: 
 
   # Iteration count: maximum number of iterations.  Each iteration corresponds
   # to one record from the (possibly aggregated) dataset.  The task is
@@ -329,7 +334,7 @@ for steps in config['predictionSteps']:
   control['metrics'].append(
       MetricSpec(field=config['predictedField'], metric='multiStep',
                  inferenceElement='multiStepBestPredictions',
-                 params={'errorMetric': 'altMAPE', 'window': 1000, 'steps': steps}))
+                 params={'errorMetric': 'altMAPE', 'window': 5*HZ, 'steps': steps}))
   control['metrics'].append(
       MetricSpec(field=config['predictedField'], metric='trivial',
                  inferenceElement='prediction',

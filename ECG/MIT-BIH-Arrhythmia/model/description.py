@@ -329,7 +329,7 @@ for steps in config['predictionSteps']:
   control['metrics'].append(
       MetricSpec(field=config['predictedField'], metric='multiStep',
                  inferenceElement='multiStepBestPredictions',
-                 params={'errorMetric': 'altMAPE', 'window': 1000, 'steps': steps}))
+                 params={'errorMetric': 'altMAPE', 'window': 5*HZ, 'steps': steps}))
   control['metrics'].append(
       MetricSpec(field=config['predictedField'], metric='trivial',
                  inferenceElement='prediction',

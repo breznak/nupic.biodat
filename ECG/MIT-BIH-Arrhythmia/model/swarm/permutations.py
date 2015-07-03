@@ -47,8 +47,6 @@ permutations = {
   
   
     'tpParams': {
-      'minThreshold': PermuteInt(9, 12),
-      'activationThreshold': PermuteInt(12, 16),
       'pamLength': PermuteChoices([5, 10, 50, 100, 1*HZ, 5*HZ, 10*HZ, 30*HZ]),
     },
 
@@ -76,7 +74,7 @@ report = [
 # NOTE: The value is used as a regular expressions by RunPermutations.py's
 #       report generator
 # (generated from minimize = 'prediction:aae:window=1000:field=consumption')
-minimize = "multiStepBestPredictions:multiStep:errorMetric='aae':steps=1:window=1000:field=ecg"
+minimize = "multiStepBestPredictions:multiStep:errorMetric='altMAPE':steps=1:window=1800:field=ecg" #1800=5*HZ
 #minimize = "prediction:anomaly:desiredPct=0.1:errorMetric='altMAPE':modelName='hotgymAnomalySwarmingDemo':steps=1:window=100:field=consumption"
 
 
