@@ -1,4 +1,3 @@
-clear all; close all; clc;
 %%
 % hledat N vs V  z ANN.anntype
 % vyhodit PACED lidi
@@ -6,8 +5,9 @@ clear all; close all; clc;
 % physiobank MIT-BIH
 
 clc; clear; close all
-
+EXPERIMENT_PATH='../../model';
 %% example on 1 patient
+
 
 % load data
 [sig, ann, tim, header, ecg] = readECGSamplePhysionet('100', '../mitdb');
@@ -33,10 +33,12 @@ plotECG(zoom)
 saveECG2csv('../out.csv', sub)
 
 % process in NuPIC
-% TODO
+% you may need to edit model/swarm/description.py etc
+!$NUPIC/scripts/run_opf_experiment.py ../../model/swarm
+!../../model/format_output.sh > ../../model/results.txt
 
-% load results back
-%TODO
+%% load results back
+res = importfile('../../model/resutls.csv');
 
 % interpret results
 

@@ -244,8 +244,8 @@ config = {
         },
 
         'anomalyParams': {
-           'mode': Anomaly.MODE_LIKELIHOOD, # pure(=default) / weighted / likelihood
-           'slidingWindowSize': 5, # >=0 / None
+           'mode': Anomaly.MODE_PURE, # pure(=default) / weighted / likelihood
+           'slidingWindowSize': None, # >=0 / None
            'anomalyBinaryThreshold': None, #0.5,
         },
 

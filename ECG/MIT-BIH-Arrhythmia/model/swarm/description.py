@@ -3,7 +3,7 @@ ECG_MAX = 1311
 NCOLS = 2048
 HZ=360
 DATA_FILE=u'file://./inputdata.csv'
-ITERATIONS=3000 # or -1 for whole dataset #override for swarming
+ITERATIONS=-1 # or -1 for whole dataset #override for swarming
 
 # ----------------------------------------------------------------------
 # Numenta Platform for Intelligent Computing (NuPIC)
@@ -244,8 +244,8 @@ config = {
         },
 
         'anomalyParams': {
-           'mode': Anomaly.MODE_LIKELIHOOD, # pure(=default) / weighted / likelihood
-           'slidingWindowSize': 5, # >=0 / None
+           'mode': Anomaly.MODE_PURE, # pure(=default) / weighted / likelihood
+           'slidingWindowSize': None, # >=0 / None
            'anomalyBinaryThreshold': None, #0.5,
         },
 

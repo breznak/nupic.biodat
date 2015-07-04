@@ -2,7 +2,7 @@
 # formats output from CLA's inference
 # ./formatOutput.sh
 
-DATA='./inference/DefaultTask.TemporalAnomaly.predictionLog.csv'
+DATA='./swarm/inference/DefaultTask.TemporalAnomaly.predictionLog.csv'
 
 # fields
 F_ACTUAL=4
