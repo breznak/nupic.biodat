@@ -44,6 +44,7 @@ permutations = {
     'sensorParams': {
       'encoders': {
         'ecg': PermuteEncoder(fieldName='ecg', encoderClass='ScalarEncoder', resolution=PermuteChoices([0.02, 0.1, 0.2, 0.5]), w=51, minval=ECG_MIN, maxval=ECG_MAX),
+#        'ecg': PermuteEncoder(fieldName='ecg', encoderClass='DeltaEncoder', n=PermuteChoices([512, 1024, 2048]), w=51, minval=ECG_MIN, maxval=ECG_MAX),
       },
     },
   
