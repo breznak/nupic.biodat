@@ -1,9 +1,11 @@
 ECG_MIN = 850
 ECG_MAX = 1311
-NCOLS = 2048
+NCOLS = 256
+NCELLS = 4
 HZ=360
+AHEAD=1
 DATA_FILE=u'file://./inputdata.csv'
-ITERATIONS=-1 # or -1 for whole dataset
+ITERATIONS=15000 # or -1 for whole dataset #override for swarming
 
 
 # ----------------------------------------------------------------------
@@ -41,12 +43,17 @@ permutations = {
   
     'sensorParams': {
       'encoders': {
-        'ecg': PermuteEncoder(fieldName='ecg', encoderClass='ScalarEncoder', resolution=PermuteChoices([0.2, 0.02, 0.1, 0.5]), w=PermuteChoices([31, 51, 91]), minval=ECG_MIN, maxval=ECG_MAX),
+        'ecg': PermuteEncoder(fieldName='ecg', encoderClass='ScalarEncoder', resolution=PermuteChoices([0.02, 0.1, 0.2, 0.5]), w=51, minval=ECG_MIN, maxval=ECG_MAX),
       },
     },
   
   
+    'spParams': {
+      'columnCount': PermuteChoices([256, 512, 1024, 2048]),
+    },
+
     'tpParams': {
+      'cellsPerColumn': PermuteChoices([2, 4, 8, 16]),
       'pamLength': PermuteChoices([5, 10, 50, 100, 1*HZ, 5*HZ, 10*HZ, 30*HZ]),
     },
 
@@ -94,5 +101,7 @@ def permutationFilter(perm):
   # An example of how to use this
   #if perm['__consumption_encoder']['maxval'] > 300:
   #  return False;
-  # 
+  #
+  print perm 
+  perm['modelParams']['tpParams']['columnCount']=perm['modelParams']['spParams']['columnCount']
   return True
