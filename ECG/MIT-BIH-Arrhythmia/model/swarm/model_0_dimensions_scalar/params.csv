@@ -1,0 +1,2 @@
+modelParams|sensorParams|encoders|ecg:resolution,modelParams|spParams|columnCount,modelParams|tpParams|cellsPerColumn,modelParams|tpParams|pamLength
+0.2,2048,16,1800
