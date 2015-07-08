@@ -1,4 +1,3 @@
-clear all; close all; clc;
 %%
 % hledat N vs V  z ANN.anntype
 % vyhodit PACED lidi
@@ -6,8 +5,9 @@ clear all; close all; clc;
 % physiobank MIT-BIH
 
 clc; clear; close all
-
+EXPERIMENT_PATH='../../model';
 %% example on 1 patient
+
 
 % load data
 [sig, ann, tim, header, ecg] = readECGSamplePhysionet('100', '../mitdb');
@@ -20,7 +20,7 @@ title('orig ECG')
 % TODO
 
 % subsample of interesting part
-figure
+figure(8)
 sub = subsampleECG(ecg, [200000, 350000]); % interesting region - first normal, later lot anomalies
 plotECG(sub)
 
@@ -31,6 +31,26 @@ plotECG(zoom)
 
 % save data in NuPIC OPF format
 saveECG2csv('../out.csv', sub)
+
+% process in NuPIC
+% you may need to edit model/swarm/description.py etc
+!$NUPIC/scripts/run_opf_experiment.py ../../model/swarm
+!../../model/format_output.sh > ../../model/results.txt
+
+%% load results back
+res = loadResultsFromCSV('results.csv');
+an = res(:,3);
+act = res(:,2);
+pred = res(:,4);
+
+%% interpret results
+figure(8)
+plot(sub.steps, act)
+hold all
+plot(sub.steps, pred)
+plot(sub.steps, an*800)
+title('NuPIC anomaly results')
+
 
 %% whole dataset
 clc; clear; close all
