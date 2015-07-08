@@ -43,8 +43,8 @@ permutations = {
   
     'sensorParams': {
       'encoders': {
-        'ecg': PermuteEncoder(fieldName='ecg', encoderClass='ScalarEncoder', resolution=PermuteChoices([0.02, 0.1, 0.2, 0.5]), w=51, minval=ECG_MIN, maxval=ECG_MAX),
-#        'ecg': PermuteEncoder(fieldName='ecg', encoderClass='DeltaEncoder', n=PermuteChoices([512, 1024, 2048]), w=51, minval=ECG_MIN, maxval=ECG_MAX),
+#        'ecg': PermuteEncoder(fieldName='ecg', encoderClass='ScalarEncoder', resolution=PermuteChoices([0.02, 0.1, 0.2, 0.5]), w=51, minval=ECG_MIN, maxval=ECG_MAX),
+        'ecg': PermuteEncoder(fieldName='ecg', encoderClass='DeltaEncoder', n=PermuteChoices([512, 1024, 2048]), w=51, minval=ECG_MIN, maxval=ECG_MAX),
       },
     },
   
@@ -55,7 +55,7 @@ permutations = {
 
     'tpParams': {
       'cellsPerColumn': PermuteChoices([2, 4, 8, 16]),
-      'pamLength': PermuteChoices([5, 10, 50, 100, 1*HZ, 5*HZ, 10*HZ, 30*HZ]),
+      'pamLength': 5*Hz, #PermuteChoices([5, 10, 50, 100, 1*HZ, 5*HZ, 10*HZ, 30*HZ]),
     },
 
 #    'anomalyParams': {
