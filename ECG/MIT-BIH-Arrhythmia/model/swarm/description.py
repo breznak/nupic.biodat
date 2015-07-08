@@ -1,11 +1,11 @@
-ECG_MIN = 850
-ECG_MAX = 1311
+ECG_MIN = 800
+ECG_MAX = 1274
 NCOLS = 2048
 NCELLS = 4
 HZ=360
 AHEAD=1
 DATA_FILE=u'file://./inputdata.csv'
-ITERATIONS=3000 # or -1 for whole dataset #override for swarming
+ITERATIONS=-1 # or -1 for whole dataset #override for swarming
 
 # ----------------------------------------------------------------------
 # Numenta Platform for Intelligent Computing (NuPIC)
@@ -79,7 +79,7 @@ config = {
             # TODO change settings here
             'encoders': {   
               'ecgScalar': {   
-                 'fieldname': u'ecgScalar',
+                 'fieldname': u'ecg',
                  'resolution': 0.2,
                  'name': u'ecgScalar',
                  'type': 'ScalarEncoder',
@@ -88,7 +88,7 @@ config = {
                  'w': 51},
 
               'ecgDelta': {
-                 'fieldname': u'ecgDelta',
+                 'fieldname': u'ecg',
                  'n': 1024,
                  'name': u'ecgDelta',
                  'type': 'DeltaEncoder',
@@ -265,7 +265,7 @@ config = {
 
 
   'predictionSteps': [AHEAD],
-  'predictedField': 'ecgScalar',
+  'predictedField': 'ecg',
 }
 # end of config dictionary
 
