@@ -1,7 +1,9 @@
 ECG_MIN = 850
 ECG_MAX = 1311
-NCOLS = 2048
+NCOLS = 512
+NCELLS = 4
 HZ=360
+AHEAD=1
 DATA_FILE=u'file://./inputdata.csv'
 ITERATIONS=-1 # or -1 for whole dataset #override for swarming
 
@@ -154,7 +156,7 @@ config = {
             'columnCount': NCOLS,
 
             # The number of cells (i.e., states), allocated per column.
-            'cellsPerColumn': 32,
+            'cellsPerColumn': NCELLS,
 
             'inputWidth': NCOLS,
 
@@ -240,7 +242,7 @@ config = {
 
             # This is set after the call to updateConfigFromSubConfig and is
             # computed from the aggregationInfo and predictAheadTime.
-            'steps': '1', # we need to predict just 1-ahead
+            'steps': AHEAD, # we need to predict just 1-ahead
         },
 
         'anomalyParams': {
@@ -253,7 +255,7 @@ config = {
     },
 
 
-  'predictionSteps': [1],
+  'predictionSteps': [AHEAD],
   'predictedField': 'ecg',
 }
 # end of config dictionary
