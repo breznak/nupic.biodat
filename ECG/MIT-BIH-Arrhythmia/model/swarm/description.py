@@ -5,7 +5,7 @@ NCELLS = 4
 HZ=360
 AHEAD=1
 DATA_FILE=u'file://./inputdata.csv'
-ITERATIONS=5000 #-1 # or -1 for whole dataset #override for swarming
+ITERATIONS=-1 # or -1 for whole dataset #override for swarming
 
 # ----------------------------------------------------------------------
 # Numenta Platform for Intelligent Computing (NuPIC)

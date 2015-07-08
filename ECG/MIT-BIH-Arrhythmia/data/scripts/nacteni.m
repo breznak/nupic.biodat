@@ -20,7 +20,7 @@ title('orig ECG')
 % TODO
 
 % subsample of interesting part
-figure
+figure(8)
 sub = subsampleECG(ecg, [200000, 350000]); % interesting region - first normal, later lot anomalies
 plotECG(sub)
 
@@ -38,9 +38,18 @@ saveECG2csv('../out.csv', sub)
 !../../model/format_output.sh > ../../model/results.txt
 
 %% load results back
-res = importfile('../../model/resutls.csv');
+res = loadResultsFromCSV('results.csv');
+an = res(:,3);
+act = res(:,2);
+pred = res(:,4);
 
-% interpret results
+%% interpret results
+figure(8)
+plot(sub.steps, act)
+hold all
+plot(sub.steps, pred)
+plot(sub.steps, an*800)
+title('NuPIC anomaly results')
 
 
 %% whole dataset
