@@ -1,6 +1,6 @@
 ECG_MIN = 850
 ECG_MAX = 1311
-NCOLS = 256
+NCOLS = 2048
 NCELLS = 4
 HZ=360
 AHEAD=1
@@ -43,8 +43,8 @@ permutations = {
   
     'sensorParams': {
       'encoders': {
-#        'ecg': PermuteEncoder(fieldName='ecg', encoderClass='ScalarEncoder', resolution=PermuteChoices([0.02, 0.1, 0.2, 0.5]), w=51, minval=ECG_MIN, maxval=ECG_MAX),
-        'ecg': PermuteEncoder(fieldName='ecg', encoderClass='DeltaEncoder', n=PermuteChoices([512, 1024, 2048]), w=51, minval=ECG_MIN, maxval=ECG_MAX),
+        'ecgScalar': PermuteEncoder(fieldName='ecg', encoderClass='ScalarEncoder', resolution=PermuteChoices([0.2]), w=51, minval=ECG_MIN, maxval=ECG_MAX),
+        'ecgDelta': PermuteEncoder(fieldName='ecg', encoderClass='DeltaEncoder', n=PermuteChoices([512, 1024, 2048]), w=51, minval=ECG_MIN, maxval=ECG_MAX),
       },
     },
   
@@ -82,7 +82,7 @@ report = [
 # NOTE: The value is used as a regular expressions by RunPermutations.py's
 #       report generator
 # (generated from minimize = 'prediction:aae:window=1000:field=consumption')
-minimize = "multiStepBestPredictions:multiStep:errorMetric='altMAPE':steps=1:window=1800:field=ecg" #1800=5*HZ
+minimize = "multiStepBestPredictions:multiStep:errorMetric='altMAPE':steps=1:window=1800:field=ecgScalar" #1800=5*HZ
 #minimize = "prediction:anomaly:desiredPct=0.1:errorMetric='altMAPE':modelName='hotgymAnomalySwarmingDemo':steps=1:window=100:field=consumption"
 
 

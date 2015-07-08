@@ -6,7 +6,7 @@ function [x] = plotECG(ecg)
   annot = ecg.annot;
   % const
   n = annot=='N';
-  ann = annot~='N'; % all not 'N' are anomalies
+  ann = annot=='V'; % all not 'N' are anomalies
   hz=360;
   baseline = 850;
   high = 900;

@@ -21,7 +21,7 @@ title('orig ECG')
 
 % subsample of interesting part
 figure(8)
-sub = subsampleECG(ecg, [200000, 350000]); % interesting region - first normal, later lot anomalies
+sub = subsampleECG(ecg, [540000, 550000]); % interesting region - 'V' type anomaly
 plotECG(sub)
 
 % zoom
