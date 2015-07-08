@@ -55,7 +55,7 @@ permutations = {
 
     'tpParams': {
       'cellsPerColumn': PermuteChoices([2, 4, 8, 16]),
-      'pamLength': 5*Hz, #PermuteChoices([5, 10, 50, 100, 1*HZ, 5*HZ, 10*HZ, 30*HZ]),
+      'pamLength': 5*HZ, #PermuteChoices([5, 10, 50, 100, 1*HZ, 5*HZ, 10*HZ, 30*HZ]),
     },
 
 #    'anomalyParams': {
