@@ -1,6 +1,6 @@
 ECG_MIN = 850
 ECG_MAX = 1311
-NCOLS = 256
+NCOLS = 2048
 NCELLS = 4
 HZ=360
 AHEAD=1
@@ -43,8 +43,8 @@ permutations = {
   
     'sensorParams': {
       'encoders': {
-#        'ecg': PermuteEncoder(fieldName='ecg', encoderClass='ScalarEncoder', resolution=PermuteChoices([0.02, 0.1, 0.2, 0.5]), w=51, minval=ECG_MIN, maxval=ECG_MAX),
-        'ecg': PermuteEncoder(fieldName='ecg', encoderClass='DeltaEncoder', n=PermuteChoices([512, 1024, 2048]), w=51, minval=ECG_MIN, maxval=ECG_MAX),
+        'ecgScalar': PermuteEncoder(fieldName='ecg', encoderClass='ScalarEncoder', resolution=PermuteChoices([0.2]), w=51, minval=ECG_MIN, maxval=ECG_MAX),
+        'ecgDelta': PermuteEncoder(fieldName='ecg', encoderClass='DeltaEncoder', n=PermuteChoices([512, 1024, 2048]), w=51, minval=ECG_MIN, maxval=ECG_MAX),
       },
     },
   

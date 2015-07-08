@@ -1,6 +1,6 @@
-ECG_MIN = 850
-ECG_MAX = 1311
-NCOLS = 256
+ECG_MIN = 800
+ECG_MAX = 1274
+NCOLS = 2048
 NCELLS = 4
 HZ=360
 AHEAD=1
@@ -78,17 +78,24 @@ config = {
 
             # TODO change settings here
             'encoders': {   
-              'ecg': {   
-                 'clipInput': True,
+              'ecgScalar': {   
                  'fieldname': u'ecg',
-#                 'resolution': 0.2,
-#                 'n': 2048,
-                 'name': u'ecg',
-#                 'type': 'ScalarEncoder',
+                 'resolution': 0.2,
+                 'name': u'ecgScalar',
+                 'type': 'ScalarEncoder',
+                 'minval': ECG_MIN,
+                 'maxval': ECG_MAX,
+                 'w': 51},
+
+              'ecgDelta': {
+                 'fieldname': u'ecg',
+                 'n': 1024,
+                 'name': u'ecgDelta',
                  'type': 'DeltaEncoder',
                  'minval': ECG_MIN,
                  'maxval': ECG_MAX,
                  'w': 51},
+
             },
 
             'sensorAutoReset' : None,
@@ -135,7 +142,7 @@ config = {
             # is correct here as opposed to 'columns')
             'synPermConnected': 0.1,
 
-            'synPermActiveInc': 0.1,
+            'synPermActiveInc': 0.05,
 
             'synPermInactiveDec': 0.01,
         },
@@ -197,12 +204,12 @@ config = {
             'initialPerm': 0.21,
 
             # Permanence Increment
-            'permanenceInc': 0.1,
+            'permanenceInc': 0.05,
 
             # Permanence Decrement
             # If set to None, will automatically default to tpPermanenceInc
             # value.
-            'permanenceDec' : 0.1,
+            'permanenceDec' : 0.01,
 
             'globalDecay': 0.0,
             'maxAge': 0,
@@ -226,7 +233,7 @@ config = {
             # elements to append to the end of a learned sequence at a time.
             # Smaller values are better for datasets with short sequences,
             # higher values are better for datasets with long sequences.
-            'pamLength': 3*HZ,
+            'pamLength': 5*HZ,
         },
 
         'clParams': {
@@ -240,7 +247,7 @@ config = {
 
             # This controls how fast the classifier learns/forgets. Higher values
             # make it adapt faster and forget older patterns faster.
-            'alpha': 0.0001,
+            'alpha': 0.000001,
 
             # This is set after the call to updateConfigFromSubConfig and is
             # computed from the aggregationInfo and predictAheadTime.
