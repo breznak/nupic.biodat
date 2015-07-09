@@ -51,6 +51,21 @@ plot(sub.steps, pred)
 plot(sub.steps, an*800)
 title('NuPIC anomaly results')
 
+%% evaluate on test-set (non-trained) sample(s)
+[~,~,~,~, ecg] = readECGSamplePhysionet('102', '../mitdb');
+
+% plot whole ECG
+plotECG(ecg)
+title('orig ECG')
+% cut 
+figure
+sub = subsampleECG(ecg, [25000, 36000]); % interesting region - 'V' type anomaly
+plotECG(sub)
+
+% store
+saveECG2csv('../out.csv', sub)
+
+
 
 %% whole dataset
 clc; clear; close all
