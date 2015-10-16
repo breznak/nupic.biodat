@@ -1,0 +1,134 @@
+##>> UPDATED STATUS: 
+Completed generation #1 of swarm 'modelParams|sensorParams|encoders|ecg' with a best errScore of 0.354398. Matured swarm(s): [u'modelParams|sensorParams|encoders|ecg']
+<jobID: 2482> 12  models finished [success: 10; EOF: 10; stopped: 0; KILLED: 2; error: 0; orphaned: 0; unknown: 0]
+####>> UPDATED JOB RESULTS: 
+{   u'absoluteFieldContributions': {   u'ecg': 0.0},
+    u'bestModel': 104488,
+    u'bestValue': 0.3532492159517741,
+    u'fieldContributions': {   u'ecg': 0.0},
+    u'metrics': {   u"multiStepBestPredictions:multiStep:errorMetric='aae':steps=1:window=1000:field=ecg": 3.6036583735893424,
+                    u"multiStepBestPredictions:multiStep:errorMetric='altMAPE':steps=1:window=1800:field=ecg": 0.3532492159517741,
+                    u"prediction:trivial:errorMetric='aae':steps=1:window=1000:field=ecg": 4.209,
+                    u"prediction:trivial:errorMetric='altMAPE':steps=1:window=1000:field=ecg": 0.4387816693719136},
+    u'saved': True} (elapsed time: 244.54 secs)
+Evaluated 12 models
+HyperSearch finished!
+Worker completion message: Exiting because we've evaluated all possible field combinations
+
+Results from all experiments:
+----------------------------------------------------------------
+[0] Experiment _NupicModelInfo(jobID=2482, modelID=104486, status=completed, completionReason=eof, updateCounter=106, numRecords=5000)
+(modelParams|spParams|columnCount_256.modelParams|tpParams|cellsPerColumn_2.modelParams|sensorParams|encoders|ecg:n_512):
+  multiStepBestPredictions:multiStep:errorMetric='aae':steps=1:window=1000:field=ecg:      4.428566340297035
+  multiStepBestPredictions:multiStep:errorMetric='altMAPE':steps=1:window=1800:field=ecg:  0.4149886063461554 (*)
+  prediction:trivial:errorMetric='aae':steps=1:window=1000:field=ecg:                      4.209
+  prediction:trivial:errorMetric='altMAPE':steps=1:window=1000:field=ecg:                  0.4387816693719136
+
+[1] Experiment _NupicModelInfo(jobID=2482, modelID=104488, status=completed, completionReason=eof, updateCounter=57, numRecords=5000)
+(modelParams|spParams|columnCount_512.modelParams|tpParams|cellsPerColumn_4.modelParams|sensorParams|encoders|ecg:n_1024):
+  multiStepBestPredictions:multiStep:errorMetric='aae':steps=1:window=1000:field=ecg:      3.6036583735893424
+  multiStepBestPredictions:multiStep:errorMetric='altMAPE':steps=1:window=1800:field=ecg:  0.3532492159517741 (*)
+  prediction:trivial:errorMetric='aae':steps=1:window=1000:field=ecg:                      4.209
+  prediction:trivial:errorMetric='altMAPE':steps=1:window=1000:field=ecg:                  0.4387816693719136
+
+[2] Experiment _NupicModelInfo(jobID=2482, modelID=104498, status=completed, completionReason=eof, updateCounter=55, numRecords=5000)
+(modelParams|spParams|columnCount_1024.modelParams|tpParams|cellsPerColumn_8.modelParams|sensorParams|encoders|ecg:n_2048):
+  multiStepBestPredictions:multiStep:errorMetric='aae':steps=1:window=1000:field=ecg:      3.6255021058991073
+  multiStepBestPredictions:multiStep:errorMetric='altMAPE':steps=1:window=1800:field=ecg:  0.36643730371059346 (*)
+  prediction:trivial:errorMetric='aae':steps=1:window=1000:field=ecg:                      4.209
+  prediction:trivial:errorMetric='altMAPE':steps=1:window=1000:field=ecg:                  0.4387816693719136
+
+[3] Experiment _NupicModelInfo(jobID=2482, modelID=104499, status=completed, completionReason=eof, updateCounter=55, numRecords=5000)
+(modelParams|spParams|columnCount_2048.modelParams|tpParams|cellsPerColumn_16.modelParams|sensorParams|encoders|ecg:n_512):
+  multiStepBestPredictions:multiStep:errorMetric='aae':steps=1:window=1000:field=ecg:      4.543193504048377
+  multiStepBestPredictions:multiStep:errorMetric='altMAPE':steps=1:window=1800:field=ecg:  0.4103709571110158 (*)
+  prediction:trivial:errorMetric='aae':steps=1:window=1000:field=ecg:                      4.209
+  prediction:trivial:errorMetric='altMAPE':steps=1:window=1000:field=ecg:                  0.4387816693719136
+
+[4] Experiment _NupicModelInfo(jobID=2482, modelID=104500, status=completed, completionReason=eof, updateCounter=55, numRecords=5000)
+(modelParams|spParams|columnCount_256.modelParams|tpParams|cellsPerColumn_2.modelParams|sensorParams|encoders|ecg:n_1024):
+  multiStepBestPredictions:multiStep:errorMetric='aae':steps=1:window=1000:field=ecg:      3.782837192215817
+  multiStepBestPredictions:multiStep:errorMetric='altMAPE':steps=1:window=1800:field=ecg:  0.36199173141871926 (*)
+  prediction:trivial:errorMetric='aae':steps=1:window=1000:field=ecg:                      4.209
+  prediction:trivial:errorMetric='altMAPE':steps=1:window=1000:field=ecg:                  0.4387816693719136
+
+[5] Experiment _NupicModelInfo(jobID=2482, modelID=104501, status=completed, completionReason=eof, updateCounter=55, numRecords=5000)
+(modelParams|spParams|columnCount_1024.modelParams|tpParams|cellsPerColumn_2.modelParams|sensorParams|encoders|ecg:n_1024):
+  multiStepBestPredictions:multiStep:errorMetric='aae':steps=1:window=1000:field=ecg:      3.8406876248691133
+  multiStepBestPredictions:multiStep:errorMetric='altMAPE':steps=1:window=1800:field=ecg:  0.3677537164825289 (*)
+  prediction:trivial:errorMetric='aae':steps=1:window=1000:field=ecg:                      4.209
+  prediction:trivial:errorMetric='altMAPE':steps=1:window=1000:field=ecg:                  0.4387816693719136
+
+[6] Experiment _NupicModelInfo(jobID=2482, modelID=104502, status=completed, completionReason=eof, updateCounter=55, numRecords=5000)
+(modelParams|spParams|columnCount_256.modelParams|tpParams|cellsPerColumn_8.modelParams|sensorParams|encoders|ecg:n_2048):
+  multiStepBestPredictions:multiStep:errorMetric='aae':steps=1:window=1000:field=ecg:      4.4124825531642955
+  multiStepBestPredictions:multiStep:errorMetric='altMAPE':steps=1:window=1800:field=ecg:  0.39837193891752476 (*)
+  prediction:trivial:errorMetric='aae':steps=1:window=1000:field=ecg:                      4.209
+  prediction:trivial:errorMetric='altMAPE':steps=1:window=1000:field=ecg:                  0.4387816693719136
+
+[7] Experiment _NupicModelInfo(jobID=2482, modelID=104503, status=completed, completionReason=eof, updateCounter=55, numRecords=5000)
+(modelParams|spParams|columnCount_512.modelParams|tpParams|cellsPerColumn_8.modelParams|sensorParams|encoders|ecg:n_2048):
+  multiStepBestPredictions:multiStep:errorMetric='aae':steps=1:window=1000:field=ecg:      4.055281760515885
+  multiStepBestPredictions:multiStep:errorMetric='altMAPE':steps=1:window=1800:field=ecg:  0.3777541311515598 (*)
+  prediction:trivial:errorMetric='aae':steps=1:window=1000:field=ecg:                      4.209
+  prediction:trivial:errorMetric='altMAPE':steps=1:window=1000:field=ecg:                  0.4387816693719136
+
+[8] Experiment _NupicModelInfo(jobID=2482, modelID=104504, status=completed, completionReason=eof, updateCounter=55, numRecords=5000)
+(modelParams|spParams|columnCount_2048.modelParams|tpParams|cellsPerColumn_2.modelParams|sensorParams|encoders|ecg:n_1024):
+  multiStepBestPredictions:multiStep:errorMetric='aae':steps=1:window=1000:field=ecg:      3.621706956181947
+  multiStepBestPredictions:multiStep:errorMetric='altMAPE':steps=1:window=1800:field=ecg:  0.35452666264764965 (*)
+  prediction:trivial:errorMetric='aae':steps=1:window=1000:field=ecg:                      4.209
+  prediction:trivial:errorMetric='altMAPE':steps=1:window=1000:field=ecg:                  0.4387816693719136
+
+[9] Experiment _NupicModelInfo(jobID=2482, modelID=104505, status=completed, completionReason=eof, updateCounter=55, numRecords=5000)
+(modelParams|spParams|columnCount_512.modelParams|tpParams|cellsPerColumn_2.modelParams|sensorParams|encoders|ecg:n_1024):
+  multiStepBestPredictions:multiStep:errorMetric='aae':steps=1:window=1000:field=ecg:      3.6963910844570504
+  multiStepBestPredictions:multiStep:errorMetric='altMAPE':steps=1:window=1800:field=ecg:  0.35439835153259164 (*)
+  prediction:trivial:errorMetric='aae':steps=1:window=1000:field=ecg:                      4.209
+  prediction:trivial:errorMetric='altMAPE':steps=1:window=1000:field=ecg:                  0.4387816693719136
+
+[10] Experiment _NupicModelInfo(jobID=2482, modelID=104506, status=completed, completionReason=killed, updateCounter=45, numRecords=4100)
+(modelParams|spParams|columnCount_256.modelParams|tpParams|cellsPerColumn_2.modelParams|sensorParams|encoders|ecg:n_2048):
+  multiStepBestPredictions:multiStep:errorMetric='aae':steps=1:window=1000:field=ecg:      3.4094650828301454
+  multiStepBestPredictions:multiStep:errorMetric='altMAPE':steps=1:window=1800:field=ecg:  0.38182129596799874 (*)
+  prediction:trivial:errorMetric='aae':steps=1:window=1000:field=ecg:                      4.19
+  prediction:trivial:errorMetric='altMAPE':steps=1:window=1000:field=ecg:                  0.43980682088945944
+
+[11] Experiment _NupicModelInfo(jobID=2482, modelID=104507, status=completed, completionReason=killed, updateCounter=11, numRecords=750)
+(modelParams|spParams|columnCount_1024.modelParams|tpParams|cellsPerColumn_2.modelParams|sensorParams|encoders|ecg:n_2048):
+  multiStepBestPredictions:multiStep:errorMetric='aae':steps=1:window=1000:field=ecg:      4.310029329594779
+  multiStepBestPredictions:multiStep:errorMetric='altMAPE':steps=1:window=1800:field=ecg:  0.45118392614186054 (*)
+  prediction:trivial:errorMetric='aae':steps=1:window=1000:field=ecg:                      4.440587449933244
+  prediction:trivial:errorMetric='altMAPE':steps=1:window=1000:field=ecg:                  0.46485105478981076
+
+--------------------------------------------------------------
+12 experiments total (all completed successfully).
+
+WaitingToStart: 0
+Running: 0
+Completed: 12
+    ran to EOF: 10
+    ran to stop signal: 0
+    were orphaned: 0
+    killed off: 2
+    failed: 0
+
+Field Contributions:
+{   u'ecg': 0.0}
+
+Best results on the optimization metric multiStepBestPredictions:multiStep:errorMetric='altMAPE':steps=1:window=1800:field=ecg (maximize=False):
+[1] Experiment _NupicModelInfo(jobID=2482, modelID=104488, status=completed, completionReason=eof, updateCounter=57, numRecords=5000) (modelParams|spParams|columnCount_512.modelParams|tpParams|cellsPerColumn_4.modelParams|sensorParams|encoders|ecg:n_1024):
+  multiStepBestPredictions:multiStep:errorMetric='altMAPE':steps=1:window=1800:field=ecg:  0.353249215952
+
+Total number of Records processed: 54850
+
+Total wall time for all models: 727
+
+Generating description files for top 1 models...
+Generating description file for model 104488 at /home/mmm/devel/ecg/nupic.biodat/ECG/MIT-BIH-Arrhythmia/model/swarm/model_0
+Generating model params file...
+
+Report csv saved in /home/mmm/devel/ecg/nupic.biodat/ECG/MIT-BIH-Arrhythmia/model/swarm/permutations_Report.csv
+Elapsed time (h:mm:ss): 0:04:07
+Hypersearch ClientJobs job ID:  2482
+

@@ -16,3 +16,11 @@
   - matlab
 
  - Run:
+  - get data from matlab:
+    - `matlab nacit.m` creates `data/out.csv` file to be processed
+  - run model (predictions, anomaly score): `$NUPIC/scripts/run_opf_experiment.py model/`
+    - you need to modify `DATA_FILE` in `model/description.py` to your path.
+  - review resutls: in `model/` run `./format_output.sh > results.csv` 
+  - improve:
+    - modify params in `model/description.py` by hand
+    - run `swarming` parameter optimization for models
