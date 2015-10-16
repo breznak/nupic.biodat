@@ -99,3 +99,5 @@ aMin = min(sigAll)
 aMax = max(sigAll)
 aMean = mean(sigAll)
 
+% save
+saveECG2csv('../out.csv', sigAll)
