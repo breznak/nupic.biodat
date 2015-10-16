@@ -2,35 +2,31 @@ function [x] = plotECG(ecg)
   % parse ECG struct input
   e=ecg;
   % const
-  hz=360;
   baseline = 850;
-  high = 900;
-  len=size(e.signal, 1);
-  sg = e.signal;
   % plot
-  hold all
   % whole signal
   plot(e.steps, e.signal)
+  hold all
   % annotated parts
-  annHuman = e.annot(e.times);
-  tn = e.times(annHuman=='N'); % tn = times of human annotations of 'N'
-  ta = e.times(annHuman~='N'); % ta = times when human annotated as not 'N' = anomaly
-  a = e.signal~='N'; % all not 'N' are anomalies
-  if(tn)
-    mask = isnan(sg);
-    mask(tn)=1;
-    whos mask
-    whos sg
-    plot(tn, e.signal(mask), 'g+')
-  end
-  if(ta)
-    plot(ta, e.signal(ta), 'r*')
+  % for specific anomalies, change to =='V' , eg for Ventricular anomaly
+  a = e.annot~='N'; % all not 'N' are anomalies
+  idxA = find(a); % idx when the anomaly happens
+% FIXME: why?
+%  if(tn)
+%    mask = isnan(sg);
+%    mask(tn)=1;
+%    whos mask
+%    whos sg
+%    plot(tn, e.signal(mask), 'g+')
+%  end
+  if idxA
+    plot(e.steps(idxA), e.signal(idxA), 'r*')
     % highlight anomaly
-    stem(ta,e.signal(ta),'BaseValue',baseline,...
+    stem(e.steps(idxA),e.signal(idxA),'BaseValue',baseline,...
                                   'LineWidth',1,...
                                   'LineStyle','-',...
                                   'Color','red') 
-  end
+  end;
   
  title('ECG anomaly')
  xlabel('sample [360Hz]')

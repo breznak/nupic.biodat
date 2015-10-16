@@ -14,13 +14,16 @@ EXPERIMENT_PATH='../../model';
 ecg 
 
 % whole ECG
-%plotECG(ecg)
-%title('orig ECG')
+figure()
+plotECG(ecg)
+title('orig ECG')
+
 
 % demo
+figure()
 demo = subsampleECG(ecg, [10000, 15000])
 plotECG(demo)
-return
+
 
 % preprocess
 % TODO

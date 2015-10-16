@@ -42,7 +42,7 @@ id=str2num(fileName);
 
 len = size(signal,1);
 ecg = {};
-ecg.signal = signal; % signal (ECG)
+ecg.signal = signal'; % signal (ECG)
 ecg.steps = 1:1:len; 
 ecg.id = ones(1, len)*id; % name of the pacient
 ecg.annot = char(ones(1,len)*'N'); % default all 'N's (normal)
