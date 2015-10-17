@@ -1,14 +1,15 @@
-function ecgCut = subsampleECG(ecgStruct, range)
+function ecgCut = subsampleECG(ecgStruct, rangeStart, rangeEnd)
 %% subsampleECG - cut a sub-sample from ECG signal, along with annotation & timing
 % params:
 %   ecgStruct = ECG in structure provided by readECTSamplePhysionet as
 %               'ecg' field.
-%   range = [min, max] list of steps (1..650k)
+%   rangeStart, rangeEnd - which step from the signal to cut, inclusive
+%   both
 % return:
 %   ecgCut = the sub sample, signal from min to max, as well as modified
 %            annot & timings, etc.
-  r0=range(1);
-  r1=range(2);
+  r0=rangeStart;
+  r1=rangeEnd;
   %hz=360;
   
   signal = ecgStruct.signal;
