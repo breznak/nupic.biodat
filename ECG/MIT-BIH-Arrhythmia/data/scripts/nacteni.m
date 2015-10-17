@@ -23,21 +23,21 @@ plotECG(ecg, 'V', 'orig ECG with Ventricular anomalies')
 
 % demo, subsample of normal region
 figure()
-demo = subsampleECG(ecg, 10000, 15000, 'N')
+demo = subsampleECG(ecg, 10000, 15000, 'N', 1)
 plotECG(demo, 'n', 'subsample of normal region')
 
 
 % preprocess
 % TODO
 
-% subsample of interesting part
+% subsample of interesting part, 2nd subsample made from this patient
 figure(8)
-sub = subsampleECG(ecg, 540000, 550000, 'V'); % interesting region - 'V' type anomaly
+sub = subsampleECG(ecg, 540000, 550000, 'V', 2); % interesting region - 'V' type anomaly
 plotECG(sub, 'n', 'subsample of Ventricular anomaly')
 
-% zoom
+% zoom, 3rd subsample
 figure
-zoom = subsampleECG(ecg, 3.07*10^5, 3.08*10^5, 'A');
+zoom = subsampleECG(ecg, 3.07*10^5, 3.08*10^5, 'A', 3);
 plotECG(zoom, 'n', 'zoom to A-anomaly')
 
 % save data in NuPIC OPF format
@@ -70,7 +70,7 @@ plotECG(ecg, 'n')
 title('orig ECG')
 % cut 
 figure
-sub = subsampleECG(ecg, 25000, 36000, 'V'); % interesting region - 'V' type anomaly
+sub = subsampleECG(ecg, 25000, 36000, 'V', 2); % interesting region - 'V' type anomaly
 plotECG(sub, 'V')
 
 % store

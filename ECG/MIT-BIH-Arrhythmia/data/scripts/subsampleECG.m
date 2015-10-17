@@ -1,4 +1,4 @@
-function ecgCut = subsampleECG(ecg, rangeStart, rangeEnd, category)
+function ecgCut = subsampleECG(ecg, rangeStart, rangeEnd, category, subId)
 %% subsampleECG - cut a sub-sample from ECG signal, along with annotation & timing
 % params:
 %   ecgStruct = ECG in structure provided by readECTSamplePhysionet as
@@ -9,6 +9,7 @@ function ecgCut = subsampleECG(ecg, rangeStart, rangeEnd, category)
 %              for example, if you make a subsample of a Ventricular
 %              anomaly, the annotation would be 'NNNVN', and category =
 %              'VVVVV'.
+%   subId = (int) unique for each subplot made from the single patient (id)
 % return:
 %   ecgCut = the sub sample, signal from min to max, as well as modified
 %            annot & timings, etc.
@@ -27,11 +28,13 @@ function ecgCut = subsampleECG(ecg, rangeStart, rangeEnd, category)
   stepsC = ecg.steps(r0:r1);
   idC = ecg.id(r0:r1);
   
+  len = size(signalC, 2);
   ecgCut=ecg;
   ecgCut.signal = signalC;
   ecgCut.steps = r0:1:r1; % used for sub-samples
   ecgCut.times = timeC';
   ecgCut.annot = annotC;
-  ecgCut.category = char(ones(1, (r1-r0+1))*category);
+  ecgCut.category = char(ones(1, len)*category);
   ecgCut.id = idC;
+  ecgCut.subId = ones(1, len)*subId;
   ecgCut.steps = stepsC;

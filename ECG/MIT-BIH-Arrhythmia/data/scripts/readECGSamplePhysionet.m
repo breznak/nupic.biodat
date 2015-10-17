@@ -43,14 +43,21 @@ id=str2num(fileName);
 len = size(signal,1);
 ecg = {};
 ecg.signal = signal'; % signal (ECG)
-ecg.steps = 1:1:len; 
+ecg.steps = 1:1:len; % 1..650k, total idx of position in 1 patient
 ecg.id = ones(1, len)*id; % name of the pacient
+% annot: human assigned annotations, for each step
 ecg.annot = char(ones(1,len)*'N'); % default all 'N's (normal)
 ecg.annot(time) = annotation; % assign annotated labels to given times
-% category: used by subsample(), similar to annot, but same for all fields;
+% category: used by subsample(), similar to annot, but same for all fields of the (sub)section;
 % eg if annot is 'NNNVN', category = 'VVVVV'
 ecg.category = char(ones(1,len)*'N'); % default all 'N's (normal)
+% times: sparse list of idx when human annotated annotation happened (=not
+% for each step)
 ecg.times = time;
+% subId should be unique for each subplot made from one patient, thus the
+% compination (id, subId) must be unique for all subsamples created from
+% this dataset; this is used by the subsample() function
+ecg.subId = ones(1, len); 
 ecg.ANN_=ANN; % orig annotation data (all)
 ecg.ECG_raw_ = EKG_raw(:,:); % orig all ECG data 
 ecg.header = header;
