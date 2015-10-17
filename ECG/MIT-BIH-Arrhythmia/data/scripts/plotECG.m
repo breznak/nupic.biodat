@@ -1,5 +1,15 @@
-function [x] = plotECG(ecg)
-  % parse ECG struct input
+function [anomalies] = plotECG(ecg, showAnomaly)
+%% plotECG()
+% param ecg - the structure provided by loadECGSample() or sumsampleECG()
+%       to be plotted
+% param showAnomaly - which annotation should be highlighted as an anomaly,
+%    'N' - normal, do not show any anomalies
+%    'n' - all not-'N' - show anything not 'N'ormal as anomaly
+%    'V' - highlight 'V'entricular anomalies
+%     etc - as used in MIT-BIH annotations
+% return: indices where the given anomalies happen 
+%
+
   e=ecg;
   % const
   baseline = 850;
@@ -8,17 +18,17 @@ function [x] = plotECG(ecg)
   plot(e.steps, e.signal)
   hold all
   % annotated parts
-  % for specific anomalies, change to =='V' , eg for Ventricular anomaly
-  a = e.annot~='N'; % all not 'N' are anomalies
+  a=[];
+  if showAnomaly == 'N' % don't plot anything
+      a=[];
+  elseif showAnomaly == 'n' % plot all not 'N'
+      a = e.annot~='N'; % all not 'N' are anomalies
+      %FIXME: ignore some annotations (end/beginning of ECG,...)
+  else % plot specific anomalies 
+      a = e.annot==showAnomaly;
+  end
+ 
   idxA = find(a); % idx when the anomaly happens
-% FIXME: why?
-%  if(tn)
-%    mask = isnan(sg);
-%    mask(tn)=1;
-%    whos mask
-%    whos sg
-%    plot(tn, e.signal(mask), 'g+')
-%  end
   if idxA
     plot(e.steps(idxA), e.signal(idxA), 'r*')
     % highlight anomaly
@@ -26,7 +36,9 @@ function [x] = plotECG(ecg)
                                   'LineWidth',1,...
                                   'LineStyle','-',...
                                   'Color','red') 
-  end;
+  end
+  
+  anomalies = idxA; 
   
  title('ECG anomaly')
  xlabel('sample [360Hz]')
