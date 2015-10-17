@@ -15,19 +15,16 @@ ecg
 
 % plot whole ECG, show all anomalies
 figure()
-plotECG(ecg, 'n')
-title('orig ECG with all anomalies')
+plotECG(ecg, 'n', 'orig ECG with all anomalies')
 
 % plot whole ECG, show all anomalies
 figure()
-plotECG(ecg, 'V')
-title('orig ECG with Ventricular anomalies')
-
+plotECG(ecg, 'V', 'orig ECG with Ventricular anomalies')
 
 % demo, subsample of normal region
 figure()
 demo = subsampleECG(ecg, 10000, 15000, 'N')
-plotECG(demo, 'n')
+plotECG(demo, 'n', 'subsample of normal region')
 
 
 % preprocess
@@ -36,12 +33,12 @@ plotECG(demo, 'n')
 % subsample of interesting part
 figure(8)
 sub = subsampleECG(ecg, 540000, 550000, 'V'); % interesting region - 'V' type anomaly
-plotECG(sub, 'n')
+plotECG(sub, 'n', 'subsample of Ventricular anomaly')
 
 % zoom
 figure
-zoom = subsampleECG(ecg, 3.02*10^5, 3.08*10^5, 'V');
-plotECG(zoom, 'V')
+zoom = subsampleECG(ecg, 3.07*10^5, 3.08*10^5, 'A');
+plotECG(zoom, 'n', 'zoom to A-anomaly')
 
 % save data in NuPIC OPF format
 saveECG2csv('../out.csv', sub)
@@ -99,18 +96,17 @@ for n = 1:numel(allNames)
     name = num2str(allNames(n));
     [~, ~, ~,~, ecg]=readECGSamplePhysionet(name, '../mitdb');
     figure
-    plotECG(ecg, 'n')
+    plotECG(ecg, 'V', name);
 %    plot(ecg.signal)
     sigAll = [sigAll; ecg.signal];
 end
 
-title('All samples overlaped')
 
 figure
 plot(sigAll)
 title('All samples in sequence')
 
-%some stats
+%% some stats
 aMin = min(sigAll)
 aMax = max(sigAll)
 aMean = mean(sigAll)

@@ -1,4 +1,4 @@
-function [anomalies] = plotECG(ecg, showAnomaly)
+function [anomalies] = plotECG(ecg, showAnomaly, desc)
 %% plotECG()
 % param ecg - the structure provided by loadECGSample() or sumsampleECG()
 %       to be plotted
@@ -7,6 +7,7 @@ function [anomalies] = plotECG(ecg, showAnomaly)
 %    'n' - all not-'N' - show anything not 'N'ormal as anomaly
 %    'V' - highlight 'V'entricular anomalies
 %     etc - as used in MIT-BIH annotations
+% param desc - (string) title of the plot window
 % return: indices where the given anomalies happen 
 %
 
@@ -40,7 +41,7 @@ function [anomalies] = plotECG(ecg, showAnomaly)
   
   anomalies = idxA; 
   
- title('ECG anomaly')
+ title([desc])
  xlabel('sample [360Hz]')
  ylabel('ECG [mV]')
  legend('ECG','annotation-Normal','annotation-Anomaly','anomaly') 
