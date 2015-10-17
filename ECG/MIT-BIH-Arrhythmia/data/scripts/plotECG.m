@@ -43,5 +43,4 @@ function [anomalies] = plotECG(ecg, showAnomaly)
  title('ECG anomaly')
  xlabel('sample [360Hz]')
  ylabel('ECG [mV]')
- legend('ECG','annotation-Normal','annotation-Anomaly','anomaly')
-  
+ legend('ECG','annotation-Normal','annotation-Anomaly','anomaly') 
