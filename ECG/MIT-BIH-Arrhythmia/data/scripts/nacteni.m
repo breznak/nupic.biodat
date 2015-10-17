@@ -9,25 +9,36 @@ EXPERIMENT_PATH='../../model';
 %% example on 1 patient
 
 
-% load data
+% load data for patient (file) 100
 [sig, ann, tim, header, ecg] = readECGSamplePhysionet('100', '../mitdb');
+ecg 
 
-% plot whole ECG
-plotECG(ecg)
-title('orig ECG')
+% plot whole ECG, show all anomalies
+figure()
+plotECG(ecg, 'n', 'orig ECG with all anomalies')
+
+% plot whole ECG, show all anomalies
+figure()
+plotECG(ecg, 'V', 'orig ECG with Ventricular anomalies')
+
+% demo, subsample of normal region
+figure()
+demo = subsampleECG(ecg, 10000, 15000, 'N')
+plotECG(demo, 'n', 'subsample of normal region')
+
 
 % preprocess
 % TODO
 
 % subsample of interesting part
 figure(8)
-sub = subsampleECG(ecg, [540000, 550000]); % interesting region - 'V' type anomaly
-plotECG(sub)
+sub = subsampleECG(ecg, 540000, 550000, 'V'); % interesting region - 'V' type anomaly
+plotECG(sub, 'n', 'subsample of Ventricular anomaly')
 
 % zoom
 figure
-zoom = subsampleECG(ecg, [3.02*10^5, 3.08*10^5]);
-plotECG(zoom)
+zoom = subsampleECG(ecg, 3.07*10^5, 3.08*10^5, 'A');
+plotECG(zoom, 'n', 'zoom to A-anomaly')
 
 % save data in NuPIC OPF format
 saveECG2csv('../out.csv', sub)
@@ -55,12 +66,12 @@ title('NuPIC anomaly results')
 [~,~,~,~, ecg] = readECGSamplePhysionet('102', '../mitdb');
 
 % plot whole ECG
-plotECG(ecg)
+plotECG(ecg, 'n')
 title('orig ECG')
 % cut 
 figure
-sub = subsampleECG(ecg, [25000, 36000]); % interesting region - 'V' type anomaly
-plotECG(sub)
+sub = subsampleECG(ecg, 25000, 36000, 'V'); % interesting region - 'V' type anomaly
+plotECG(sub, 'V')
 
 % store
 saveECG2csv('../out.csv', sub)
@@ -84,18 +95,21 @@ sigAll=[];
 for n = 1:numel(allNames)
     name = num2str(allNames(n));
     [~, ~, ~,~, ecg]=readECGSamplePhysionet(name, '../mitdb');
-%    plotECG(ecg)
-    plot(ecg.signal)
+    figure
+    plotECG(ecg, 'V', name);
+%    plot(ecg.signal)
     sigAll = [sigAll; ecg.signal];
 end
-title('All samples overlaped')
+
 
 figure
 plot(sigAll)
 title('All samples in sequence')
 
-%some stats
+%% some stats
 aMin = min(sigAll)
 aMax = max(sigAll)
 aMean = mean(sigAll)
 
+% save
+saveECG2csv('../out.csv', sigAll)

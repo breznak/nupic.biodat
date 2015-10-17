@@ -37,10 +37,20 @@ signal = EKG_raw(:,1);
 annotation = ANN.anntyp;
 time = ANN.time;
 header = headerData;
+% id = name of the file = patient
+id=str2num(fileName);
 
+len = size(signal,1);
 ecg = {};
-ecg.signal = signal;
-ecg.steps = 1:1:size(signal,1);
-ecg.annot = annotation;
+ecg.signal = signal'; % signal (ECG)
+ecg.steps = 1:1:len; 
+ecg.id = ones(1, len)*id; % name of the pacient
+ecg.annot = char(ones(1,len)*'N'); % default all 'N's (normal)
+ecg.annot(time) = annotation; % assign annotated labels to given times
+% category: used by subsample(), similar to annot, but same for all fields;
+% eg if annot is 'NNNVN', category = 'VVVVV'
+ecg.category = char(ones(1,len)*'N'); % default all 'N's (normal)
 ecg.times = time;
+ecg.ANN_=ANN; % orig annotation data (all)
+ecg.ECG_raw_ = EKG_raw(:,:); % orig all ECG data 
 ecg.header = header;

@@ -1,27 +1,47 @@
-function [x] = plotECG(ecg)
-  % parse ECG struct input
-  steps = ecg.steps;
-  signal = ecg.signal;
-  time = ecg.times;
-  annot = ecg.annot;
+function [anomalies] = plotECG(ecg, showAnomaly, desc)
+%% plotECG()
+% param ecg - the structure provided by loadECGSample() or sumsampleECG()
+%       to be plotted
+% param showAnomaly - which annotation should be highlighted as an anomaly,
+%    'N' - normal, do not show any anomalies
+%    'n' - all not-'N' - show anything not 'N'ormal as anomaly
+%    'V' - highlight 'V'entricular anomalies
+%     etc - as used in MIT-BIH annotations
+% param desc - (string) title of the plot window
+% return: indices where the given anomalies happen 
+%
+
+  e=ecg;
   % const
-  n = annot=='N';
-  ann = annot=='V'; % all not 'N' are anomalies
-  hz=360;
   baseline = 850;
-  high = 900;
   % plot
+  % whole signal
+  plot(e.steps, e.signal)
   hold all
-  plot(steps, signal)
-  plot(time(n),signal(n), 'g+')
-  plot(time(ann), signal(ann), 'r*')
-  % highlight anomaly
-  stem(time(ann),ann(ann==1)*high,'BaseValue',baseline,...
-                                  'LineWidth',3,...
+  % annotated parts
+  a=[];
+  if showAnomaly == 'N' % don't plot anything
+      a=[];
+  elseif showAnomaly == 'n' % plot all not 'N'
+      a = e.annot~='N'; % all not 'N' are anomalies
+      %FIXME: ignore some annotations (end/beginning of ECG,...)
+  else % plot specific anomalies 
+      a = e.annot==showAnomaly;
+  end
+ 
+  idxA = find(a); % idx when the anomaly happens
+  if idxA
+    plot(e.steps(idxA), e.signal(idxA), 'r*')
+    % highlight anomaly
+    stem(e.steps(idxA),e.signal(idxA),'BaseValue',baseline,...
+                                  'LineWidth',1,...
                                   'LineStyle','-',...
                                   'Color','red') 
- title('ECG anomaly')
+  end
+  
+  anomalies = idxA; 
+  
+ title([desc])
  xlabel('sample [360Hz]')
  ylabel('ECG [mV]')
- legend('ECG','annotation-Normal','annotation-Anomaly','anomaly')
-  
+ legend('ECG','annotation-Normal','annotation-Anomaly','anomaly') 
